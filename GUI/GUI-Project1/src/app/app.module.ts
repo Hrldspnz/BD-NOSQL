@@ -10,6 +10,8 @@ import { SharedModule } from './components/shared/shared.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { StudentsComponent } from './components/students/students.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ClubesComponent } from './components/students/clubes/clubes.component';
+import { CreateClubComponent } from './components/students/create-club/create-club.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     RegisterComponent,
     AdminComponent,
     StudentsComponent,
-    NavbarComponent
-    
+    NavbarComponent,
+    ClubesComponent,
+    CreateClubComponent,
+
+
   ],
   imports: [
     BrowserModule,
