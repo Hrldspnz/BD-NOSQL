@@ -9,7 +9,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { SharedModule } from './components/shared/shared.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { StudentsComponent } from './components/students/students.component';
-import { NavbarComponent } from './components/admin/navbar/navbar.component';
+import { NavbarComponentA } from './components/admin/navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NavbarComponent } from './components/admin/navbar/navbar.component';
     RegisterComponent,
     AdminComponent,
     StudentsComponent,
+    NavbarComponentA, 
     NavbarComponent
     
   ],
