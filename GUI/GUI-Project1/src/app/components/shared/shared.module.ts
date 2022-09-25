@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    
+    FormsModule,
     HttpClientModule,
     
   ]
