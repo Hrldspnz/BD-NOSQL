@@ -14,3 +14,10 @@ table {
 	text-transform: uppercase;
   color: #63CBA8;
 }
+
+.mat-header-cell {
+	color: var(--inv);
+	letter-spacing: 0.2rem;
+	text-transform: uppercase;
+    color: #FFC273;
+}

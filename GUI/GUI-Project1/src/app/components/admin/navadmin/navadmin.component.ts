@@ -19,9 +19,9 @@ export class NavadminComponent implements OnInit {
   ngOnInit(): void {
     this.menu= [
       {nombre:"Estudiantes con + sugerencias",
-      redirect:"/admin/"},
+      redirect:"/admin/suggestions"},
       {nombre:"Top de clubes",
-      redirect:"jhber"}
+      redirect:"/admin/tops"}
     ]
   }
 
