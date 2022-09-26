@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './components/admin/admin.component';
+import { ClubsComponent } from './components/admin/clubs/clubs.component';
+import { TopsComponent } from './components/admin/tops/tops.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AdminRoutingModule } from './components/admin/admin.routing.module';
 
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full'},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
-    { path: 'admin', loadChildren: () => import('./components/admin/admin.routing.module').then(x => x.AdminRoutingModule)},
+    { path: 'admin', component:AdminComponent},
+    {path: 'admin/clubs', component:ClubsComponent},
+    {path: 'admin/tops', component:TopsComponent},
     { path: '**', redirectTo: 'login', pathMatch: 'full'}
   ];
   
