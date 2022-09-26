@@ -30,7 +30,6 @@ import { CreateClubComponent } from './components/students/create-club/create-cl
     NavadminComponent,
     TopsComponent,
     SuggestionsComponent,
-    
     ClubesComponent,
     CreateClubComponent,
 
