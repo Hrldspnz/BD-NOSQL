@@ -15,6 +15,8 @@ import { TopsComponent } from './components/admin/tops/tops.component';
 import { SharedModule } from './components/shared/shared.module';
 import { SuggestionsComponent } from './components/admin/suggestions/suggestions.component';
 
+import { ClubesComponent } from './components/students/clubes/clubes.component';
+import { CreateClubComponent } from './components/students/create-club/create-club.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +29,12 @@ import { SuggestionsComponent } from './components/admin/suggestions/suggestions
     ClubsComponent,
     NavadminComponent,
     TopsComponent,
-    SuggestionsComponent
+    SuggestionsComponent,
     
+    ClubesComponent,
+    CreateClubComponent,
+
+
   ],
   imports: [
     BrowserModule,

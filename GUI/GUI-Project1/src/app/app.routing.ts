@@ -6,6 +6,8 @@ import { SuggestionsComponent } from './components/admin/suggestions/suggestions
 import { TopsComponent } from './components/admin/tops/tops.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ClubesComponent } from './components/students/clubes/clubes.component';
+import { CreateClubComponent } from './components/students/create-club/create-club.component';
 
 
 const routes: Routes = [
@@ -16,7 +18,10 @@ const routes: Routes = [
     {path: 'admin/clubs', component:ClubsComponent},
     {path: 'admin/tops', component:TopsComponent},
     {path: 'admin/suggestions', component:SuggestionsComponent},
-    { path: '**', redirectTo: 'login', pathMatch: 'full'}
+    { path: 'clubes', component: ClubesComponent },
+    { path: 'create-club', component: CreateClubComponent },
+
+    { path: '**', redirectTo: 'app', pathMatch: 'full'}
   ];
   
   @NgModule({

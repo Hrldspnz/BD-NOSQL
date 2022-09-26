@@ -1,3 +1,4 @@
+
 .tolbar{
   background-color: #26798E;
   color: #FFE3B3;
@@ -11,4 +12,15 @@
   background-color: #FFE3B3;
   color: #26798E;
   margin-left: 5PX;
+}
+
+.ancho{
+  width: 80%;
+}
+
+.myTable {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: antiquewhite;
 }
