@@ -9,7 +9,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 
-app.config['MONGO_URI'] = 'mongodb://localhost:30001/pruba'
+app.config['MONGO_URI'] = 'mongodb://localhost:30000/clubesDB'
 
 mongo = PyMongo(app)
 
@@ -73,7 +73,7 @@ def update_user(usuario):
     else:
       return not_found()
 
-
+#-----------------Metodos Cursos------------------------
 # Retorna todos los cursos en la BD
 @app.route('/cursos', methods=['GET'])
 def get_cursos():
@@ -81,6 +81,52 @@ def get_cursos():
         response = json_util.dumps(cursos)
         return Response(response, mimetype="application/json")
 
+
+@app.route('/cursos', methods=['POST'])
+def post_curso():
+        # Receiving Data
+        nombre = request.json['nombre']
+        categoria = request.json['categoria']
+        estudiante = request.json['estudiante']
+
+
+
+        if nombre and categoria and estudiante:
+
+            id = mongo.db.Cursos.insert_one(
+                {'nombre': nombre, 'categoria': categoria, 'estudiante': estudiante,'interesados': 1})
+            response = jsonify({
+                '_id': str(id),
+                'nombre': nombre,
+                'categoria': categoria,
+                'estudiante': estudiante,
+                'interesados': 1
+            })
+            response.status_code = 201
+            return response
+        else:
+            return not_found()
+
+#Retorna los aportes de un usuario
+@app.route('/cursos/interesados/<nombre>', methods=['GET'])
+def get_cursos_interesados(nombre):
+    cursos = mongo.db.Cursos.find_one({'nombre': nombre, },{"_id":0,"interesados":1})
+    response = json_util.dumps(cursos)
+    return Response(response, mimetype="application/json")
+
+#Modifica cantidad de interesados
+@app.route('/cursos/<nombre>', methods=['PUT'])
+def update_interesados(nombre):
+    interesados = request.json['interesados']
+
+    if nombre and interesados:
+        mongo.db.Cursos.update_one(
+            {'nombre': nombre}, {'$set': {'interesados': interesados}})
+        response = jsonify({'message ': 'Materia ' + nombre + ' Updated Successfuly'})
+        response.status_code = 200
+        return response
+    else:
+      return not_found()
 
 #---------------------------------Metodos administrador------------------------------
 
@@ -114,6 +160,44 @@ def post_admin():
             return response
         else:
             return not_found()
+
+#------------------Consultas de Administradores---------------------
+#Obtiene la cantidad de cursos por categoria
+#La estructura es contador:2
+@app.route('/cursos/categoria/<categoria>', methods=['GET'])
+def get_cons_clases_categoria(categoria):
+    contador = mongo.db.Cursos.count_documents({'categoria': categoria})
+
+    res = {
+
+        "contador": contador
+
+    }
+    response = json_util.dumps(res)
+    return Response(response, mimetype="application/json")
+
+
+#Retorna los 3 estudiantes con mas aportes
+@app.route('/estudiantes/top3', methods=['GET'])
+def get_estudiantes_top3():
+    estudiantes = mongo.db.Estudiantes.find({},{"_id":0,"nombre":1,"aportes":1}).sort("aportes",-1).limit(3)
+    response = json_util.dumps(estudiantes)
+    return Response(response, mimetype="application/json")
+
+#Retorna los 5 cursos con mas interes
+@app.route('/cursos/top5M', methods=['GET'])
+def get_estudiantes_top5_mejores():
+    cursos = mongo.db.Cursos.find({},{"_id":0,"nombre":1,"categoria":1,"interesados":1}).sort("interesados",-1).limit(5)
+    response = json_util.dumps(cursos)
+    return Response(response, mimetype="application/json")
+
+
+#Retorna los 5 cursos con menos interes
+@app.route('/cursos/top5P', methods=['GET'])
+def get_estudiantes_top5_peores():
+    cursos = mongo.db.Cursos.find({},{"_id":0,"nombre":1,"categoria":1,"interesados":1}).sort("interesados").limit(5)
+    response = json_util.dumps(cursos)
+    return Response(response, mimetype="application/json")
 
 
 
