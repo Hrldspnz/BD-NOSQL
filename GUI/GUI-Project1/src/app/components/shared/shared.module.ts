@@ -12,6 +12,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [],
   imports: [
@@ -28,7 +29,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatGridListModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule
 
   ],
   exports:[
@@ -45,7 +47,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatGridListModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule
 
   ]
 })

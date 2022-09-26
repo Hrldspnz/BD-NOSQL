@@ -21,10 +21,13 @@
         <mat-grid-tile [colspan]="1" [rowspan]="1" >
           <mat-form-field class="ancho" appearance="fill">
             <mat-label>Categoría</mat-label>
-            <input type="text" matInput formControlName="categoria" autocomplete="off">
+            <mat-select matInput formControlName="categoria">
+              <mat-option class="mySelect" *ngFor="let categoria of categorias" [value]="categoria.value">
+                {{categoria.viewValue}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </mat-grid-tile>
-
 
         <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background]="'ligthblue'">
           <button class="butForm" type="submit" [disabled]="formClub.invalid" mat-raised-button>Guardar</button>
