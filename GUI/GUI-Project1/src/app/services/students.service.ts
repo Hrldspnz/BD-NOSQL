@@ -21,8 +21,8 @@ export class StudentsService {
     return this._http.post(this.url+'cursos', dataClub);
   }
 
-  getClub(dataClub: Object){
-    return this._http.get(this.url+'cursos', dataClub);
+  getClub(){
+    return this._http.get(this.url+'cursos');
   }
 
   putInteresados(club: string, dataInter: Object){

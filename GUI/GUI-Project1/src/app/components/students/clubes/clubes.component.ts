@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
-
+import { StudentsService } from 'src/app/services/students.service';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -21,9 +21,10 @@ export class ClubesComponent implements OnInit {
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() { }
+  constructor(private _studentService: StudentsService) { }
 
   ngOnInit(): void {
+    this.getClubes();
   }
 
   ngAfterViewInit() {
@@ -36,6 +37,16 @@ export class ClubesComponent implements OnInit {
 
   agregarInteres(){
     console.log("Me interesa")
+  }
+
+  getClubes(){
+    this._studentService.getClub().subscribe(data => {
+      console.log(data);
+      alert("Se han guardado los datos correctamente")
+    }, error => {
+      alert("Error al crear Cuenta de Usuario, dirección de Correo Electrónico ya registrada o contraseña menor a 8 caracteres")
+    }
+    );
   }
 
 }
