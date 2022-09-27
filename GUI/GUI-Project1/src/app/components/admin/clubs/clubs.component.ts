@@ -1,21 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AdminService } from 'src/app/services/admin.service';
+
 export interface PeriodicElement {
   position: number;
   Cantidad: string;
   Categoria: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, Cantidad: '18', Categoria: "Letras"},
-  {position: 2, Cantidad: '13', Categoria: "sdf"},
-  {position: 3, Cantidad: '11', Categoria: "rdfg"},
-  {position: 4, Cantidad: '5', Categoria: "srf"},
-  {position: 5, Cantidad: '3', Categoria: "sdsddsf"},
-  {position: 6, Cantidad: '1', Categoria: "cdfvdfv"},
-  {position: 7, Cantidad: '1', Categoria: "dfdfv"},
-  {position: 8, Cantidad: '1', Categoria: "eferferf"}
-];
+
 
 @Component({
   selector: 'app-clubs',
@@ -23,11 +16,54 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./clubs.component.css'],
 })
 export class ClubsComponent implements OnInit {
+  ELEMENT_DATA: PeriodicElement[] = [
+    {position:1, Cantidad:"",Categoria:"Deportes"},
+    {position:2, Cantidad:"",Categoria:"Artes"},
+    {position:3, Cantidad:"",Categoria:"Ingenieria"},
+    {position:4, Cantidad:"",Categoria:"Idiomas"}
+  ];
   displayedColumns: string[] = ['position', 'Cantidad', 'Categoria'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  dataSource = this.ELEMENT_DATA;
+
+  constructor(private _adminService: AdminService) { }
 
   ngOnInit(): void {
+    this.getDeportes()
+    this.getArtes()
+    this.getIngenieria()
+    this.getIdiomas()
+  }
+
+  getDeportes(){
+    this._adminService.getDeporte().subscribe(
+      result=>{
+        console.log("Result de deportes",result)
+        this.ELEMENT_DATA[0].Cantidad=result.contador
+      }
+    )
+  }
+  
+  getArtes(){
+    this._adminService.getArtes().subscribe(
+      result=>{
+        this.ELEMENT_DATA[1].Cantidad=result.contador
+      }
+    )
+  }
+  getIngenieria(){
+    this._adminService.getIngenieria().subscribe(
+      result=>{
+        this.ELEMENT_DATA[2].Cantidad=result.contador
+      }
+    )
+  }
+  getIdiomas(){
+    this._adminService.getIdiomas().subscribe(
+      result=>{
+        this.ELEMENT_DATA[3].Cantidad=result.contador
+        console.log(this.ELEMENT_DATA)
+      }
+    )
   }
 
 }
