@@ -1,0 +1,16 @@
+.cardDataUser{
+  background-color: #FFE3B3;
+  width: 49%;
+  margin: auto;
+  height: 400px;
+  margin-top: 10px;
+}
+
+.tile{
+  width: 400px;
+}
+
+.myTolbar {
+  background-color: #217A8F;
+  color: #FFE3B3;
+}

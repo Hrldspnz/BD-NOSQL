@@ -1,1 +1,54 @@
-<p>register works!</p>
+<p>
+  <mat-toolbar class="myTolbar">
+    <span>Registro de Usuarios</span>
+  </mat-toolbar>
+</p>
+
+<mat-card class="cardDataUser">
+
+  <mat-grid-list cols="2" rowHeight="70px">
+
+  <form [formGroup]="formDataUser" (ngSubmit)="addUser()">
+    <mat-grid-tile [colspan]="2" [rowspan]="1" >
+      <mat-form-field class="tile" appearance="fill">
+        <mat-label>Nombre Completo</mat-label>
+        <input type="text" matInput formControlName="name" autocomplete="off">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1" >
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Nombre Usuario</mat-label>
+        <input type="text" matInput formControlName="user" autocomplete="off">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1" >
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" matInput formControlName="password" autocomplete="off">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1" >
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Confrimar contraseña</mat-label>
+        <input type="password" matInput formControlName="passwordConfirm" autocomplete="off">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1" >
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Sección</mat-label>
+        <input type="text" matInput formControlName="section" autocomplete="off">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background]="'ligthblue'">
+      <button type="submit" [disabled]="formDataUser.invalid" class="myButton" mat-raised-button>Siguiente</button>
+    </mat-grid-tile>
+  </form>
+
+  </mat-grid-list>
+
+</mat-card>
