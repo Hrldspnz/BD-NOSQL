@@ -25,7 +25,6 @@ export class SuggestionsComponent implements OnInit {
   constructor(private _adminService: AdminService) { }
 
   ngOnInit(): void {
-    console.log("dsfdsffsd")
     this.getSuggests()
   }
 
