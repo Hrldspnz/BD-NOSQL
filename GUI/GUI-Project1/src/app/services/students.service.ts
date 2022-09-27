@@ -21,13 +21,12 @@ export class StudentsService {
     return this._http.post(this.url+'cursos', dataClub);
   }
 
-  getClub(){
+  getClub(): Observable<any>{
     return this._http.get(this.url+'cursos');
   }
 
   putInteresados(club: string, dataInter: Object){
     return this._http.put(this.url+'cursos/' + club, dataInter);
   }
-
 
 }
