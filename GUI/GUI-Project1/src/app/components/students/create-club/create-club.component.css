@@ -1,0 +1,40 @@
+
+.tolbar{
+  background-color: #26798E;
+  color: #FFE3B3;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.butBar {
+  background-color: #FFE3B3;
+  color: #26798E;
+  margin-left: 5PX;
+}
+
+.butForm {
+  background-color: #26798E;
+  color: #FFE3B3;
+  margin-left: 5PX;
+}
+
+
+.ancho{
+  width: 80%;
+  color: #26798E;
+}
+
+.cardForm {
+  background-color: #FFE3B3;
+  margin-top: 100 px;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mySelect {
+  background-color: #FFE3B3;
+  color: #26798E;
+}

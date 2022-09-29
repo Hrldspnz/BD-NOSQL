@@ -1,0 +1,56 @@
+<div class="container">
+  <mat-toolbar class="tolbar">
+    <span>CLUBES PROPUESTOS</span>
+    <div class="example-spacer"></div>
+    <button routerLink="/app/create-club" class="butBar" mat-stroked-button>Proponer Club</button>
+    <button routerLink="/app/clubes" class="butBar" mat-stroked-button>Inicio</button>
+  </mat-toolbar>
+
+
+
+    <table class="myTable" mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="categoria">
+        <th mat-header-cell *matHeaderCellDef> Categoría </th>
+        <td mat-cell *matCellDef="let element"> {{element.categoria}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="interesados">
+        <th mat-header-cell *matHeaderCellDef> Interesados </th>
+        <td mat-cell *matCellDef="let element"> {{element.interesados}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element; let i = index" style="text-align: right;">
+          <a *ngIf="element.state == 'Interes'"
+                class="pointer"  style="color:
+               green;" >
+              <button class="esperaButton" (click)="agregarInteres(element.nombre)"
+              mat-button>Me Interesa</button>
+          </a>
+          <a *ngIf="element.state == 'noInteres'" class="pointer"
+                style="color: indianred;">
+                <button class="esperaButton" (click)="eliminarInteres(element.nombre)"
+                 mat-button>No me interesa</button>
+          </a>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator class="mytable" [pageSizeOptions]="[5, 10, 25]" aria-label="Select page of users"></mat-paginator>
+
+  </div>
