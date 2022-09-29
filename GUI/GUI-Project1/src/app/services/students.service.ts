@@ -28,5 +28,16 @@ export class StudentsService {
   putInteresados(club: string, dataInter: Object){
     return this._http.put(this.url+'cursos/' + club, dataInter);
   }
+  getInteresados(club: string,): Observable<any> {
+    return this._http.get(this.url+'cursos/interesados/'+club);
+  }
+
+  getAportes(user: string,): Observable<any> {
+    return this._http.get(this.url+'estudiantes/aportes/'+user);
+  }
+
+  putAportes(user: string, dataInter: Object){
+    return this._http.put(this.url+'estudiantes/' + user, dataInter);
+  }
 
 }
