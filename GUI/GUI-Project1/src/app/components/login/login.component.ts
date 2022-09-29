@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
     private _logService: UserlogService) { }
 
   ngOnInit(): void {
+    localStorage.removeItem("user")
+    localStorage.removeItem("admin")
   }
 
   submit(){
@@ -30,12 +32,14 @@ export class LoginComponent implements OnInit {
 
   }
   isUser(){
+    let nombre= this.username
     this._logService.getUser(this.username).subscribe(
       result=>{
         if(result!=null) {
           this.user=true
           if(this.pass==result.clave.toString() ){
-            this.router.navigate(['/clubes'])
+            localStorage.setItem("user",nombre) // saves the user
+            this.router.navigate(['/app/clubes'])
           }
         }
       }
@@ -50,6 +54,7 @@ export class LoginComponent implements OnInit {
           this.admin=true
           
           if(this.pass==result.clave.toString()){
+            localStorage.setItem("admin",this.username) // saves the user
             this.router.navigate(['/admin']);
           }else {
             alert("Usuario o contraseña incorrectos")

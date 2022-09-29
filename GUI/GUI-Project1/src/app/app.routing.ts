@@ -18,8 +18,8 @@ const routes: Routes = [
     {path: 'admin/clubs', component:ClubsComponent},
     {path: 'admin/tops', component:TopsComponent},
     {path: 'admin/suggestions', component:SuggestionsComponent},
-    { path: 'clubes', component: ClubesComponent },
-    { path: 'create-club', component: CreateClubComponent },
+    { path: 'app/clubes', component: ClubesComponent },
+    { path: 'app/create-club', component: CreateClubComponent },
 
     { path: '**', redirectTo: 'app', pathMatch: 'full'}
   ];

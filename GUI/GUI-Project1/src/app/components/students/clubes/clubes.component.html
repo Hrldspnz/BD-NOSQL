@@ -4,6 +4,7 @@
     <div class="example-spacer"></div>
     <button routerLink="/app/create-club" class="butBar" mat-stroked-button>Proponer Club</button>
     <button routerLink="/app/clubes" class="butBar" mat-stroked-button>Inicio</button>
+    <button routerLink="/login" class="butBar" mat-stroked-button>Salir</button>
   </mat-toolbar>
 
 
@@ -35,12 +36,12 @@
           <a *ngIf="element.state == 'Interes'"
                 class="pointer"  style="color:
                green;" >
-              <button class="esperaButton" (click)="agregarInteres(element.nombre)"
+              <button class="esperaButton" (click)="agregarInteres(element.nombre, i)"
               mat-button>Me Interesa</button>
           </a>
           <a *ngIf="element.state == 'noInteres'" class="pointer"
                 style="color: indianred;">
-                <button class="esperaButton" (click)="eliminarInteres(element.nombre)"
+                <button class="esperaButton" (click)="eliminarInteres(element.nombre,i)"
                  mat-button>No me interesa</button>
           </a>
         </td>

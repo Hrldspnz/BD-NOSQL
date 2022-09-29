@@ -4,6 +4,7 @@
     <div class="example-spacer"></div>
     <button routerLink="/app/create-club" class="butBar" mat-stroked-button>Proponer Club</button>
     <button routerLink="/app/clubes" class="butBar" mat-stroked-button>Ver Clubes</button>
+    <button routerLink="/login" class="butBar" mat-stroked-button>Salir</button>
   </mat-toolbar>
 
 
@@ -31,7 +32,7 @@
 
         <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background]="'ligthblue'">
           <button class="butForm" type="submit" [disabled]="formClub.invalid" mat-raised-button>Guardar</button>
-          <button class="butForm" routerLink="/app/students" mat-raised-button>VOLVER</button>
+          <button class="butForm" routerLink="/app/clubes" mat-raised-button>VOLVER</button>
         </mat-grid-tile>
 
       </mat-grid-list>
