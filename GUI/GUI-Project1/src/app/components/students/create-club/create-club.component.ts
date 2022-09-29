@@ -19,6 +19,8 @@ export class CreateClubComponent implements OnInit {
   formClub: FormGroup;
   counter:number=0;
   username:any = localStorage.getItem("user");
+  listClubes: any[] = [];
+
 
   categorias: Datos[] = [
     {value: 'Idiomas', viewValue: 'Idiomas'},
@@ -38,9 +40,27 @@ export class CreateClubComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.loadClubes();
   }
 
-  addClub() {
+  loadClubes(){
+    this._userService.getClub().subscribe(
+      result => {
+        result;
+        var i = 0;
+        this.listClubes=[]
+        while(result[i] != undefined){
+          this.listClubes.push(result[i].nombre);
+          i++;
+        }
+        console.log(this.listClubes)
+      },
+      error => {
+        alert("Error al cargar la lista de Clubes")
+      });
+  }
+
+  addClubAux() {
     const newUser: Object =
     {
       nombre: this.formClub.value.nombre,
@@ -55,6 +75,18 @@ export class CreateClubComponent implements OnInit {
       alert("Error al crear Cuenta de Usuario, dirección de Correo Electrónico ya registrada o contraseña menor a 8 caracteres")
     }
     );
+  }
+
+  addClub(){
+    var i = 0;
+    while( i < this.listClubes.length){
+      if ( this.formClub.value.nombre == this.listClubes[i]){
+        alert("El club que desea ingresar ya se encuentra registrado")
+        break
+      }
+      i ++;
+    this.addClubAux();
+    }
   }
 
   addAporte(){
@@ -78,6 +110,6 @@ export class CreateClubComponent implements OnInit {
     )
   }
 
-  
+
 
 }
