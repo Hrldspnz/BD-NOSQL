@@ -19,7 +19,7 @@ export class AdminService {
     return this._http.get(this.url+'cursos/categoria/Artes');
   }
   getIngenieria(): Observable<any>{
-    return this._http.get(this.url+'cursos/categoria/Ingenieria');
+    return this._http.get(this.url+'cursos/categoria/Ingeniería');
   }
   getIdiomas(): Observable<any>{
     return this._http.get(this.url+'cursos/categoria/Idiomas');

@@ -17,7 +17,7 @@ export class SuggestionsComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [
     {position: 1, nombre: '18', cursos: "Letete"},
     {position: 2, nombre: '13', cursos: "Gagaga"},
-    {position: 3, nombre: '11', cursos: "rdfg"},
+    {position: 3, nombre: '', cursos: ""},
     
   ];
   displayedColumns: string[] = ['position', 'Nombre Completo', 'Cantidad de Cursos Propuestos'];

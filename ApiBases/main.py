@@ -10,7 +10,10 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-puertos=[30000,30001,30002]
+
+app.config['MONGO_URI'] = 'mongodb://localhost:30000/clubesDB'
+
+mongo = PyMongo(app)
 
 
 
@@ -18,11 +21,6 @@ puertos=[30000,30001,30002]
 #Retorna todos los estudiantes
 @app.route('/estudiantes', methods=['GET'])
 def get_estudiantes():
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:'+str(puerto)+'/clubesDB'
-
-    mongo = PyMongo(app)
 
     estudiantes = mongo.db.Estudiantes.find()
     response = json_util.dumps(estudiantes)
@@ -31,11 +29,7 @@ def get_estudiantes():
 #Retorna la clave de un usuario
 @app.route('/estudiantes/<usuario>', methods=['GET'])
 def get_estudiante_usuario(usuario):
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-    mongo = PyMongo(app)
     estudiantes = mongo.db.Estudiantes.find_one({'usuario': usuario, },{"_id":0,"clave":1})
     response = json_util.dumps(estudiantes)
     return Response(response, mimetype="application/json")
@@ -43,22 +37,14 @@ def get_estudiante_usuario(usuario):
 #Retorna los aportes de un usuario
 @app.route('/estudiantes/aportes/<usuario>', methods=['GET'])
 def get_estudiante_aportes(usuario):
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-    mongo = PyMongo(app)
     estudiantes = mongo.db.Estudiantes.find_one({'usuario': usuario, },{"_id":0,"aportes":1})
     response = json_util.dumps(estudiantes)
     return Response(response, mimetype="application/json")
 
 @app.route('/estudiantes', methods=['POST'])
 def post_estudiante():
-        puerto = puertos[random.randint(0, 2)]
-        print(puerto)
-        app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-        mongo = PyMongo(app)
         nombre = request.json['nombre']
         usuario = request.json['usuario']
         clave = request.json['clave']
@@ -86,12 +72,6 @@ def post_estudiante():
 def update_user(usuario):
     aportes = request.json['aportes']
 
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
-
-    mongo = PyMongo(app)
-
     if usuario and aportes:
         mongo.db.Estudiantes.update_one(
             {'usuario': usuario}, {'$set': {'aportes': aportes}})
@@ -105,11 +85,7 @@ def update_user(usuario):
 # Retorna todos los cursos en la BD
 @app.route('/cursos', methods=['GET'])
 def get_cursos():
-        puerto = puertos[random.randint(0, 2)]
-        print(puerto)
-        app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-        mongo = PyMongo(app)
         cursos = mongo.db.Cursos.find()
         response = json_util.dumps(cursos)
         return Response(response, mimetype="application/json")
@@ -117,11 +93,7 @@ def get_cursos():
 
 @app.route('/cursos', methods=['POST'])
 def post_curso():
-        puerto = puertos[random.randint(0, 2)]
-        print(puerto)
-        app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-        mongo = PyMongo(app)
         nombre = request.json['nombre']
         categoria = request.json['categoria']
         estudiante = request.json['estudiante']
@@ -147,11 +119,7 @@ def post_curso():
 #Retorna los aportes de un usuario
 @app.route('/cursos/interesados/<nombre>', methods=['GET'])
 def get_cursos_interesados(nombre):
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-    mongo = PyMongo(app)
     cursos = mongo.db.Cursos.find_one({'nombre': nombre, },{"_id":0,"interesados":1})
     response = json_util.dumps(cursos)
     return Response(response, mimetype="application/json")
@@ -159,11 +127,7 @@ def get_cursos_interesados(nombre):
 #Modifica cantidad de interesados
 @app.route('/cursos/<nombre>', methods=['PUT'])
 def update_interesados(nombre):
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-    mongo = PyMongo(app)
     interesados = request.json['interesados']
 
     if nombre and interesados:
@@ -180,11 +144,7 @@ def update_interesados(nombre):
 #Retorna la clave de un administrador
 @app.route('/admin/<usuario>', methods=['GET'])
 def get_admin_clave(usuario):
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-    mongo = PyMongo(app)
     estudiantes = mongo.db.Administradores.find_one({'usuario': usuario, },{"_id":0,"clave":1})
     response = json_util.dumps(estudiantes)
     return Response(response, mimetype="application/json")
@@ -192,11 +152,7 @@ def get_admin_clave(usuario):
 
 @app.route('/admin', methods=['POST'])
 def post_admin():
-        puerto = puertos[random.randint(0, 2)]
-        print(puerto)
-        app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-        mongo = PyMongo(app)
 
         usuario = request.json['usuario']
         clave = request.json['clave']
@@ -222,11 +178,7 @@ def post_admin():
 #La estructura es contador:2
 @app.route('/cursos/categoria/<categoria>', methods=['GET'])
 def get_cons_clases_categoria(categoria):
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-    mongo = PyMongo(app)
     contador = mongo.db.Cursos.count_documents({'categoria': categoria})
 
     res = {
@@ -241,11 +193,7 @@ def get_cons_clases_categoria(categoria):
 #Retorna los 3 estudiantes con mas aportes
 @app.route('/estudiantes/top3', methods=['GET'])
 def get_estudiantes_top3():
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-    mongo = PyMongo(app)
     estudiantes = mongo.db.Estudiantes.find({},{"_id":0,"nombre":1,"aportes":1}).sort("aportes",-1).limit(3)
     response = json_util.dumps(estudiantes)
     return Response(response, mimetype="application/json")
@@ -253,11 +201,7 @@ def get_estudiantes_top3():
 #Retorna los 5 cursos con mas interes
 @app.route('/cursos/top5M', methods=['GET'])
 def get_estudiantes_top5_mejores():
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-    mongo = PyMongo(app)
     cursos = mongo.db.Cursos.find({},{"_id":0,"nombre":1,"categoria":1,"interesados":1}).sort("interesados",-1).limit(5)
     response = json_util.dumps(cursos)
     return Response(response, mimetype="application/json")
@@ -266,11 +210,7 @@ def get_estudiantes_top5_mejores():
 #Retorna los 5 cursos con menos interes
 @app.route('/cursos/top5P', methods=['GET'])
 def get_estudiantes_top5_peores():
-    puerto = puertos[random.randint(0, 2)]
-    print(puerto)
-    app.config['MONGO_URI'] = 'mongodb://localhost:' + str(puerto) + '/clubesDB'
 
-    mongo = PyMongo(app)
     cursos = mongo.db.Cursos.find({},{"_id":0,"nombre":1,"categoria":1,"interesados":1}).sort("interesados").limit(5)
     response = json_util.dumps(cursos)
     return Response(response, mimetype="application/json")
